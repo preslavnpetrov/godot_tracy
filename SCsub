@@ -2,6 +2,7 @@
 
 Import("env")
 Import("env_modules")
+Import("env_object")
 
 env_tracy = env_modules.Clone()
 
@@ -22,6 +23,7 @@ else:
 env_tracy.disable_warnings()
 
 if "tracy_enable" in env and env["tracy_enable"] == "yes":
+    env_object.Append(CPPDEFINES=["TRACY_ENABLE"])
     env_tracy.Append(CPPDEFINES=["TRACY_ENABLE"])
     env_modules.Append(CPPDEFINES=["TRACY_ENABLE"])
     env.Append(CPPDEFINES=["TRACY_ENABLE"])

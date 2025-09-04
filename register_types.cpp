@@ -2,6 +2,7 @@
 
 #include "core/config/engine.h"
 #include "tracy_profiler.h"
+#include "core/object/class_db.h"
 
 void initialize_godot_tracy_module(ModuleInitializationLevel p_level) {
 	if (p_level == ModuleInitializationLevel::MODULE_INITIALIZATION_LEVEL_CORE) {
@@ -11,7 +12,7 @@ void initialize_godot_tracy_module(ModuleInitializationLevel p_level) {
 
 		TracyProfiler::init_singleton();
 
-	} else if (p_level == ModuleInitializationLevel::MODULE_INITIALIZATION_LEVEL_CORE) {
+	} else if (p_level == ModuleInitializationLevel::MODULE_INITIALIZATION_LEVEL_SCENE) {
 		ClassDB::register_class<TracyProfiler>();
 		Engine::get_singleton()->add_singleton(Engine::Singleton("TracyProfiler", TracyProfiler::get_singleton()));
 	}
